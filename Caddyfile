@@ -22,10 +22,3 @@ api.{$SERVER_NAME}:80 {
     }
     root /_
 }
-
-gql.{$SERVER_NAME}:80 {
-    proxy / gql:8080 {
-        websocket
-        transparent
-    }
-}

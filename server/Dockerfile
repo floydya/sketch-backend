@@ -25,9 +25,10 @@ RUN pipenv install --system --dev --ignore-pipfile
 RUN pip install --upgrade gunicorn
 
 COPY ./entrypoint.sh $APP_HOME
+RUN chmod +x $APP_HOME/entrypoint.sh
 COPY . $APP_HOME
 RUN chown -R app:app $APP_HOME
 
 USER app
 
-ENTRYPOINT ["/home/app/web/entrypoint.sh"]
+ENTRYPOINT ["sh", "/home/app/web/entrypoint.sh"]

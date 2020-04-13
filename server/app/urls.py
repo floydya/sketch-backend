@@ -15,9 +15,6 @@ if 'rosetta' in settings.INSTALLED_APPS:
 if 'des' in settings.INSTALLED_APPS:
     urlpatterns += [path('django-des/', include('des.urls'))]
 
-if 'smart_selects' in settings.INSTALLED_APPS:
-    urlpatterns += [path('chaining/', include('smart_selects.urls'))]
-
 if settings.DEBUG:
     urlpatterns += (
             static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) +
