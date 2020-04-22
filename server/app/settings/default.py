@@ -140,7 +140,8 @@ DATABASES['default']['DISABLE_SERVER_SIDE_CURSORS'] = True
 
 AUTH_USER_MODEL = 'accounts.User'
 
-EMAIL_BACKEND = 'des.backends.ConfiguredEmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'des.backends.ConfiguredEmailBackend'
 POSTIE_HTML_ADMIN_WIDGET = {
     "widget": "CKEditorWidget",
     "widget_module": "ckeditor.widgets",
@@ -216,7 +217,7 @@ JWT_AUTH = {
 }
 
 SIMPLE_JWT = {
-   'AUTH_HEADER_TYPES': ('JWT',),
+    'AUTH_HEADER_TYPES': ('JWT',),
 }
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 1024
@@ -237,5 +238,8 @@ STRINGS = {
 DJOSER = {
     "SERIALIZERS": {
         'current_user': 'applications.accounts.api.serializers.UserSerializer'
-    }
+    },
+    "USER_CREATE_PASSWORD_RETYPE": True,
+    "SEND_ACTIVATION_EMAIL": True,
+    "ACTIVATION_URL": "http://localhost:3000/auth/activate/{uid}/{token}",
 }
