@@ -33,6 +33,9 @@ API_BASE_PREFIX = f'api/v{API_VERSION}/'
 
 urlpatterns += [
     path(API_BASE_PREFIX, include([
+        path('auth/', include('djoser.urls')),
+        path('auth/', include('djoser.urls.authtoken')),
+        path('auth/', include('djoser.urls.jwt')),
         path('', include('applications.accounts.api.urls')),
         path('', include('applications.notifications.api.urls')),
         path('', include('applications.transactions.api.urls')),
@@ -40,6 +43,6 @@ urlpatterns += [
 ]
 
 urlpatterns += [
-    path('', TemplateView.as_view(template_name='index.html'), name="index"),
-    path('', include('applications.accounts.urls')),
+    # path('', TemplateView.as_view(template_name='index.html'), name="index"),
+    # path('', include('applications.accounts.urls')),
 ]

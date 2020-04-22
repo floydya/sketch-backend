@@ -35,8 +35,10 @@ django-rosetta = "*"
 django-solo = "*"
 django_celery_beat = "*"
 django-timezone-field = {git = "https://github.com/mfogel/django-timezone-field.git"}
+djangorestframework-simplejwt = "*"
 djangorestframework = "*"
 djangorestframework-jwt = "*"
+djoser = "*"
 drf-nested-routers = "*"
 drf_base64 = {git = "https://github.com/floydya/drf_base64.git"}
 gunicorn = "*"

@@ -28,6 +28,7 @@ INSTALLED_APPS = (
     'solo',
     'django_filters',
     'rest_framework',
+    'rest_framework.authtoken',
     'django_cleanup.apps.CleanupConfig',
     'corsheaders',
     'djmoney',
@@ -35,6 +36,7 @@ INSTALLED_APPS = (
     # 'mptt',
     'crispy_forms',
     'jet',
+    'djoser',
     # 'django_celery_beat',
 
     'postie',
@@ -195,6 +197,8 @@ CELERY_TIMEZONE = 'UTC'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
@@ -211,6 +215,10 @@ JWT_AUTH = {
     'JWT_AUTH_HEADER_PREFIX': 'Bearer',
 }
 
+SIMPLE_JWT = {
+   'AUTH_HEADER_TYPES': ('JWT',),
+}
+
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 1024
 
 FILTERS_NULL_CHOICE_LABEL = True
@@ -225,4 +233,9 @@ JET_CHANGE_FORM_SIBLING_LINKS = False
 
 STRINGS = {
     'REQUIRED': _("This field is required."),
+}
+DJOSER = {
+    "SERIALIZERS": {
+        'current_user': 'applications.accounts.api.serializers.UserSerializer'
+    }
 }

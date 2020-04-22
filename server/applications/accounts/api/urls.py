@@ -8,7 +8,7 @@ router = SimpleRouter()
 router.register('users', UserViewSet, basename="users")
 
 urlpatterns = router.urls + [
-    path('auth/', include([
+    path('auth1/', include([
         path('login/', obtain_jwt_token),
         path('current/', CurrentUserView.as_view()),
         path('change-password/', UserPasswordUpdateView.as_view())
