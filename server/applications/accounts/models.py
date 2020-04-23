@@ -81,6 +81,7 @@ class User(AbstractUser):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = tuple()
+    FIELDS_TO_UPDATE = ('first_name', 'middle_name', 'last_name', 'phone_number', 'gender', 'birth_date', 'avatar')
     objects = UserManager()
 
     def __str__(self):
