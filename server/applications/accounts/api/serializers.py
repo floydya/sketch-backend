@@ -44,6 +44,7 @@ class UserSerializer(serializers.ModelSerializer):
             'avatar',
             'date_joined',
             'last_login',
+            'gender',
             'new_password',
             'confirm_new_password',
         )
