@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from applications.accounts.api.serializers import UsernameSerializer
+from applications.accounts.api.serializers import UserSerializer
 from applications.transactions.models import Transaction
 
 
@@ -15,7 +15,7 @@ class TransactionEntityRelatedField(serializers.RelatedField):
 
 
 class TransactionSerializer(serializers.ModelSerializer):
-    created_by = UsernameSerializer()
+    created_by = UserSerializer()
     transaction_type = serializers.CharField(source='get_transaction_type_display')
     entity_type = serializers.CharField(source='entity_type.name')
     entity__type = serializers.CharField(source='entity_type.model')

@@ -237,14 +237,18 @@ STRINGS = {
 }
 DJOSER = {
     "SERIALIZERS": {
-        'current_user': 'applications.accounts.api.serializers.UserSerializer'
+        'current_user': 'applications.accounts.api.serializers.CurrentUserSerializer',
+        'user': 'applications.accounts.api.serializers.UserSerializer',
     },
     "USER_CREATE_PASSWORD_RETYPE": True,
     "SET_PASSWORD_RETYPE": True,
     "SEND_ACTIVATION_EMAIL": True,
     "PASSWORD_RESET_CONFIRM_RETYPE": True,
     "ACTIVATION_URL": "http://localhost:3000/auth/activate/{uid}/{token}",
-    "PASSWORD_RESET_CONFIRM_URL": "http://localhost:3000/auth/password-reset/{uid}/{token}"
+    "PASSWORD_RESET_CONFIRM_URL": "http://localhost:3000/auth/password-reset/{uid}/{token}",
+    "PERMISSIONS": {
+        "user": ["rest_framework.permissions.AllowAny"],
+    }
 }
 
 # SIMPLE_JWT = {

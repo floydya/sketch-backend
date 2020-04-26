@@ -2,7 +2,6 @@ from django.conf import settings
 from django.urls import path, include
 from django.contrib import admin
 from django.contrib.staticfiles.urls import static
-from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -36,7 +35,6 @@ urlpatterns += [
         path('auth/', include('djoser.urls')),
         path('auth/', include('djoser.urls.authtoken')),
         path('auth/', include('djoser.urls.jwt')),
-        path('', include('applications.accounts.api.urls')),
         path('', include('applications.notifications.api.urls')),
         path('', include('applications.transactions.api.urls')),
     ])),

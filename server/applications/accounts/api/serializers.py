@@ -5,14 +5,14 @@ from rest_framework import serializers
 from applications.accounts.models import User
 
 
-class UsernameSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = 'id', 'email', 'get_full_name',
+        fields = 'id', 'email', 'get_full_name', 'avatar', 'phone_number'
 
 
-class UserSerializer(serializers.ModelSerializer):
+class CurrentUserSerializer(serializers.ModelSerializer):
     avatar = Base64ImageField(
         required=False,
         allow_null=True
@@ -73,40 +73,3 @@ class UserSerializer(serializers.ModelSerializer):
         password, _p = validated_data.pop('new_password'), validated_data.pop('confirm_new_password')
         validated_data['password'] = password
         return User.objects.create_user(**validated_data)
-
-
-class UserPasswordSerializer(serializers.Serializer):
-    old_password = serializers.CharField(required=True, write_only=True)
-    new_password = serializers.CharField(required=True, write_only=True)
-    repeat_new_password = serializers.CharField(required=True, write_only=True)
-
-    def validate(self, attrs):
-        old_password = attrs.get('old_password')
-        new_password = attrs.get('new_password')
-        repeat_new_password = attrs.get('repeat_new_password')
-
-        if new_password != repeat_new_password:
-            raise serializers.ValidationError({
-                'new_password': "Пароли должны совпадать!",
-                'repeat_new_password': "Пароли должны совпадать!",
-            })
-
-        if old_password == new_password:
-            raise serializers.ValidationError("Новый и старый пароли не отличаются!")
-
-        if not self.instance.check_password(old_password):
-            raise serializers.ValidationError({
-                'old_password': "Текущий пароль введен неверно!",
-            })
-
-        return attrs
-
-    def update(self, instance: User, validated_data):
-        instance.set_password(validated_data.get('new_password'))
-        instance.save()
-        return instance
-
-    def create(self, validated_data):
-        pass
-
-
